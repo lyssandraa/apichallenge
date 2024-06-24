@@ -58,7 +58,6 @@ const App = () => {
           <Modal show={showModal} onClose={handleCloseModal}>
             {selectedBook && (
               <>
-                <img src={selectedBook.cover} alt={book.title} />
                 <h2>{selectedBook.title}</h2>
                 <p>{selectedBook.release_date}</p>
                 <p>{selectedBook.summary}</p>

@@ -1,4 +1,5 @@
 import React from "react";
+import "./Modal.css";
 
 // a functional component with three props //
 // show is a boolean to determine if the modal should show //
