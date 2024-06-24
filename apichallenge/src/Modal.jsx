@@ -14,8 +14,15 @@ const Modal = ({ show, onClose, children }) => {
   // if show is true, the modal renders //
   return (
     <>
-      <div className="modal-overlay">
-        <div className="modal-content">
+      {/* function to close popup when overlay is clicked */}
+      <div className="modal-overlay" onClick={onClose}>
+        {/* exempting content of popup from the onclose function */}
+        <div
+          className="modal-content"
+          onClick={(event) => {
+            event.stopPropagation();
+          }}
+        >
           {/* renders an (x) to symbolise the option to close the modal  */}
           <button className="modal-close" onClick={onClose}>
             &times;
