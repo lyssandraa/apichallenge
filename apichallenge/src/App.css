@@ -25,7 +25,6 @@ body,
 }
 
 .wrapper {
-  border: 1px solid red;
   display: grid;
   grid-template-columns: repeat(7, 1fr);
   gap: 20px;
@@ -34,7 +33,6 @@ body,
 .content img {
   width: 150px;
   height: 200px;
-  object-fit: cover;
 }
 
 h2 {
