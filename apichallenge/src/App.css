@@ -40,7 +40,7 @@ h2 {
 }
 
 h1 {
-  padding-top: 75px;
+  padding-top: 80px;
   color: #d4af37;
   display: flex;
   justify-content: center;
@@ -57,6 +57,7 @@ h1 {
 .sort-options {
   text-align: center;
   color: #d4af37;
+  padding-bottom: 20px;
 }
 
 .sort-options label {
