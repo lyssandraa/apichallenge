@@ -7,7 +7,7 @@ const App = () => {
   const [errorMsg, setErrorMsg] = useState("");
   const [showModal, setShowModal] = useState(false);
   const [selectedBook, setSelectedBook] = useState(null);
-  const [sortCriteria, setSortCriteria] = useState("newest");
+  const [sortCriteria, setSortCriteria] = useState("null");
 
   const fetchData = async () => {
     try {
@@ -44,13 +44,9 @@ const App = () => {
     setSortCriteria(criteria);
     let sortedBooks = [...bookData];
     if (criteria === "newest") {
-      sortedBooks.sort(
-        (a, b) => new Date(b.release_date) - new Date(a.release_date)
-      );
+      sortedBooks.sort((a, b) => new Date(b.serial) - new Date(a.serial));
     } else if (criteria === "oldest") {
-      sortedBooks.sort(
-        (a, b) => new Date(a.release_date) - new Date(b.release_date)
-      );
+      sortedBooks.sort((a, b) => new Date(a.serial) - new Date(b.serial));
     } else if (criteria === "alphabetically") {
       sortedBooks.sort((a, b) => a.title.localeCompare(b.title));
     } else if (criteria === "longest") {
@@ -73,6 +69,7 @@ const App = () => {
           value={sortCriteria}
           onChange={(e) => handleSort(e.target.value)}
         >
+          <option value="null">Select an Option</option>
           <option value="newest">Newest to Oldest</option>
           <option value="oldest">Oldest to Newest</option>
           <option value="alphabetically">Alphabetically</option>

@@ -54,3 +54,17 @@ h1 {
   justify-content: center;
   font-size: 20px;
 }
+
+.sort-options {
+  text-align: center;
+  color: #d4af37;
+}
+
+.sort-options label {
+  margin-right: 10px;
+}
+
+select {
+  background-color: goldenrod;
+  color: white;
+}
