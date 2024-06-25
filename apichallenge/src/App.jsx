@@ -40,6 +40,10 @@ const App = () => {
 
   return (
     <>
+      <h1>Harry Potter Books Guide</h1>
+      <p className="subtitle">
+        API endpoint: "https://potterhead-api.vercel.app/api/books"
+      </p>
       {errorMsg !== "" ? (
         <p>{errorMsg}</p>
       ) : (
