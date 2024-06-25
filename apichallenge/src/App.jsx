@@ -7,6 +7,7 @@ const App = () => {
   const [errorMsg, setErrorMsg] = useState("");
   const [showModal, setShowModal] = useState(false);
   const [selectedBook, setSelectedBook] = useState(null);
+  const [sortCriteria, setSortCriteria] = useState("newest");
 
   const fetchData = async () => {
     try {
@@ -24,6 +25,11 @@ const App = () => {
       setErrorMsg(error.message);
     }
   };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
   const handleOpenModal = (book) => {
     setSelectedBook(book);
     setShowModal(true);
@@ -34,9 +40,26 @@ const App = () => {
     setSelectedBook(null);
   };
 
-  useEffect(() => {
-    fetchData();
-  }, []);
+  const handleSort = (criteria) => {
+    setSortCriteria(criteria);
+    let sortedBooks = [...bookData];
+    if (criteria === "newest") {
+      sortedBooks.sort(
+        (a, b) => new Date(b.release_date) - new Date(a.release_date)
+      );
+    } else if (criteria === "oldest") {
+      sortedBooks.sort(
+        (a, b) => new Date(a.release_date) - new Date(b.release_date)
+      );
+    } else if (criteria === "alphabetically") {
+      sortedBooks.sort((a, b) => a.title.localeCompare(b.title));
+    } else if (criteria === "longest") {
+      sortedBooks.sort((a, b) => b.pages - a.pages);
+    } else if (criteria === "shortest") {
+      sortedBooks.sort((a, b) => a.pages - b.pages);
+    }
+    setBookData(sortedBooks);
+  };
 
   return (
     <>
@@ -44,6 +67,19 @@ const App = () => {
       <p className="subtitle">
         API endpoint: "https://potterhead-api.vercel.app/api/books"
       </p>
+      <div className="sort-options">
+        <label>Sort By: </label>
+        <select
+          value={sortCriteria}
+          onChange={(e) => handleSort(e.target.value)}
+        >
+          <option value="newest">Newest to Oldest</option>
+          <option value="oldest">Oldest to Newest</option>
+          <option value="alphabetically">Alphabetically</option>
+          <option value="longest">Longest to Shortest</option>
+          <option value="shortest">Shortest to Longest</option>
+        </select>
+      </div>
       {errorMsg !== "" ? (
         <p>{errorMsg}</p>
       ) : (
